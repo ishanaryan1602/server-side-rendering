@@ -14,7 +14,7 @@ async function handleCreateshortUrl(req, res) {
 }
 
 async function handlelongUrl(req, res) {
-  const shortUrl = req.params.shortid; // Assuming the parameter is 'shortid'
+  const shortUrl = req.params.shortid;
 
   const foundUrl = await urlModel.findOneAndUpdate(
     { shortUrl },
@@ -40,15 +40,16 @@ async function handleStats(req, res) {
   });
 }
 
-module.exports = {
+async function handleTestEjs(req, res) {
+  const allUrlfromModel = await urlModel.find({})
+  return res.render("home",{
+    urls : allUrlfromModel
+  })
+}  
+
+module.exports = { 
   handleCreateshortUrl,
   handlelongUrl,
   handleStats,
+  handleTestEjs,
 };
-
-
-// {$push: {
-//   viewHistory: {
-//     timestamp: Date.now(),
-//   },
-// }},
