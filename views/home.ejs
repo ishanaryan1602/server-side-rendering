@@ -118,14 +118,7 @@
     <div>
       <h1>Url Shortner</h1>
       <form method="POST" action="/url">
-        <% if (locals.redirectpage) { %>
-        <input
-          type="text"
-          name="url"
-          placeholder="Enter your url here . . ."
-          value="<%= redirectpage  %>"
-        />
-        <% } %>
+        <input type="text" name="url" placeholder="Enter your url here . . ." />
         <button type="submit">Generate</button>
       </form>
       <% if (locals.url) { %>
