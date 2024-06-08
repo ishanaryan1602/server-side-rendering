@@ -106,7 +106,7 @@
         width: 100%;
         background: white;
       }
-      footer a{
+      footer a {
         text-decoration: none;
       }
       footer p {
@@ -118,7 +118,7 @@
     <div>
       <h1>Url Shortner</h1>
       <form method="POST" action="/url">
-        <input type="text" name="url" placeholder="Enter your url here . . ." />
+        <input type="text" name="url" placeholder="Enter your url here . . ." value="<%= redirectpage  %>"/>
         <button type="submit">Generate</button>
       </form>
       <% if (locals.url) { %>
