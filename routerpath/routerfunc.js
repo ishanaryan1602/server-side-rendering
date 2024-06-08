@@ -10,9 +10,10 @@ async function handleCreateshortUrl(req, res) {
     longUrl: req.body.url,
     viewHistory: [],
   });
-  return res.render("home",{
-    url : createdid.shortUrl
-  })
+  return res.render("home", {
+    url: createdid.shortUrl,
+    redirectpage: createdid.longUrl
+  });
 }
 
 async function handlelongUrl(req, res) {
@@ -43,13 +44,13 @@ async function handleStats(req, res) {
 }
 
 async function handleHomePageRender(req, res) {
-  const allUrlfromModel = await urlModel.find({})
-  return res.render("home",{
-    urls : allUrlfromModel
-  })
-}  
+  const allUrlfromModel = await urlModel.find({});
+  return res.render("home", {
+    urls: allUrlfromModel,
+  });
+}
 
-module.exports = { 
+module.exports = {
   handleCreateshortUrl,
   handlelongUrl,
   handleStats,
