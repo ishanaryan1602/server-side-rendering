@@ -25,9 +25,8 @@ async function handlelongUrl(req, res) {
     return res.status(404).json({ msg: "Short URL not found" });
   }
 
-  return res.redirect(foundUrl.longUrl); // Assuming you want to redirect
+  return res.json(foundUrl.longUrl);
 }
-
 
 async function handleStats(req, res) {
   const shortUrl = req.params.shortUrl;
