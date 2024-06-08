@@ -3,7 +3,7 @@ const {
   handlelongUrl,
   handleCreateshortUrl,
   handleStats,
-  handleTestEjs
+  handleHomePageRender
 } = require("./routerfunc");
 
 const router = express.Router();
@@ -14,6 +14,6 @@ router.get("/:shortid", handlelongUrl);
 
 router.get("/stats/:shortUrl", handleStats);
 
-router.get("/test/report", handleTestEjs);
+router.get("/", handleHomePageRender);
 
 module.exports = router;

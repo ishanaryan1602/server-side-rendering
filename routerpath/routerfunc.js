@@ -10,7 +10,9 @@ async function handleCreateshortUrl(req, res) {
     longUrl: req.body.url,
     viewHistory: [],
   });
-  return res.json({ url: createdid.shortUrl });
+  return res.render("home",{
+    url : createdid.shortUrl
+  })
 }
 
 async function handlelongUrl(req, res) {
@@ -40,7 +42,7 @@ async function handleStats(req, res) {
   });
 }
 
-async function handleTestEjs(req, res) {
+async function handleHomePageRender(req, res) {
   const allUrlfromModel = await urlModel.find({})
   return res.render("home",{
     urls : allUrlfromModel
@@ -51,5 +53,5 @@ module.exports = {
   handleCreateshortUrl,
   handlelongUrl,
   handleStats,
-  handleTestEjs,
+  handleHomePageRender,
 };

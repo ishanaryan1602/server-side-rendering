@@ -12,6 +12,7 @@ mongoose
   .catch((err) => console.error("Error connecting to MongoDB:", err));
 
 app.use(express.json());
+app.use(express.urlencoded({ extended:false }));
 
 app.set('view engine', 'ejs');
 
