@@ -1,26 +1,20 @@
-// const nanoid = require("nanoid");
 const urlModel = require("../models/urlmodel");
 const shortid = require("shortid");
 
 async function handleCreateshortUrl(req, res) {
   const shortId = shortid();
   const everyExistingUrl = await urlModel.find({});
-  const shortUrl = req.params.shortUrl;
-  const entry = await urlModel.findOne({ shortUrl });
-  if (!req.body || !req.body.url)
+  if (!req.body || !req.body.url) {
     return res.status(400).json({ msg: "bad request" });
+  }
   const createdid = await urlModel.create({
     shortUrl: shortId,
     longUrl: req.body.url,
     viewHistory: [],
   });
-  return res.render(
-    "home",
-    {
-      allurls: everyExistingUrl,
-      entry: entry,
-    }
-  );
+  return res.render("home", {
+    allurls: everyExistingUrl,
+  });
 }
 
 async function handlelongUrl(req, res) {
