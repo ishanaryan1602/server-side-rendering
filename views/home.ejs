@@ -139,6 +139,9 @@
       h1.stats {
         margin-bottom: 20px;
       }
+      a.shortlink{
+        flex: 0.3;
+      }
     </style>
   </head>
   <body>
@@ -154,10 +157,10 @@
         <% allurls.forEach((url,index) => { %>
         <li>
           <p><%= index + 1 %>.</p>
-          <a href="<%= url.redirectpage %>" target="_blank"
+          <a href="<%= url.redirectpage %>" target="_blank" class="shortlink"
             >http://<%= url.shortUrl %></a
             >
-            <a href="<%= url.longUrl %>"><%= url.longUrl %></a>
+            <a href="<%= url.longUrl %>" target="_blank"><%= url.longUrl %></a>
             <p><%= url.viewHistory.length %></p>
         </li>
         <% }) %>
