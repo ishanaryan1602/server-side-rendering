@@ -3,6 +3,7 @@ const shortid = require("shortid");
 
 async function handleCreateshortUrl(req, res) {
   const shortId = shortid();
+  const everyExistingUrl = await urlModel.find({});
   if (!req.body || !req.body.url)
     return res.status(400).json({ msg: "bad request" });
   const createdid = await urlModel.create({
@@ -10,10 +11,16 @@ async function handleCreateshortUrl(req, res) {
     longUrl: req.body.url,
     viewHistory: [],
   });
-  return res.render("home", {
-    url: createdid.shortUrl,
-    redirectpage: createdid.longUrl
-  });
+  return res.render(
+    "home",
+    // {
+    //   url: createdid.shortUrl,
+    //   redirectpage: createdid.longUrl,
+    // },
+    {
+      allurls: everyExistingUrl,
+    }
+  );
 }
 
 async function handlelongUrl(req, res) {
@@ -37,10 +44,10 @@ async function handleStats(req, res) {
   if (!entry) {
     return res.status(404).json({ msg: "Short URL not found" });
   }
-  return res.json({
-    totalVisits: entry.viewHistory.length,
-    stats: entry.viewHistory,
-  });
+  // return res.json({
+  //   totalVisits: entry.viewHistory.length,
+  //   stats: entry.viewHistory,
+  // });
 }
 
 async function handleHomePageRender(req, res) {
