@@ -16,9 +16,9 @@
       body > * {
         font-family: "Poppins";
         font-weight: 300;
-      }
-      body {
-        background: rgba(149, 157, 165, 0.2);
+        }
+        body{
+        background: rgba(149, 157, 165, 0.05);
       }
       label {
         font-weight: 100;
@@ -74,7 +74,7 @@
       }
       a {
         text-decoration: none;
-        color: rgb(0, 0, 0);
+        color: lightslategray;
       }
       div a {
         text-decoration: none;
@@ -84,7 +84,7 @@
         color: black;
       }
       div {
-        width: 70%;
+        width: 90%;
         border-radius: 10px;
         height: 50%;
         display: flex;
@@ -102,7 +102,6 @@
         align-items: center;
         font-family: "Poppins";
         font-weight: 300;
-        font-size: 14px;
         padding: 20px 0;
         gap: 40px;
         width: 100%;
@@ -112,8 +111,10 @@
       }
       footer a {
         text-decoration: none;
+        font-size: 14px;
       }
       footer p {
+        font-size: 14px;
         margin: 0;
       }
       li {
@@ -123,10 +124,10 @@
         gap: 20px;
         font-size: 12px;
       }
-      li p{
+      li p {
         flex: 0.1;
       }
-      li a{
+      li a {
         flex: 1;
       }
       ul {
@@ -139,8 +140,26 @@
       h1.stats {
         margin-bottom: 20px;
       }
-      a.shortlink{
+      a.shortlink {
         flex: 0.3;
+      }
+      li.topheader{
+        display: flex;
+      }
+      li p:nth-child(1){
+        flex: 0.1;
+      }
+      li p:nth-child(2){
+        flex: 0.3;
+        text-align: start;
+      }
+      li p:nth-child(3){
+        flex: 1;
+        text-align: start;
+      }
+      li p:nth-child(4){
+        flex: 0.3;
+        text-align: center;
       }
     </style>
   </head>
@@ -154,16 +173,26 @@
       <% if (locals.allurls) { %>
       <ul>
         <h1 class="stats">-Statstics-</h1>
+        <li class="topheader">
+          <p>S.no</p>
+          <p>Short Link</p>
+          <p>Redirect Link</a>
+          <p>Total Visits</p>
+        </li>
         <% allurls.forEach((url,index) => { %>
         <li>
+          <!-- index -->
           <p><%= index + 1 %>.</p>
-          <a href="<%= url.redirectpage %>" target="_blank" class="shortlink"
+          <!-- shortUrl -->
+          <a href="<%= url.longUrl %>" target="_blank" class="shortlink"
             >http://<%= url.shortUrl %></a
-            >
-            <a href="<%= url.longUrl %>" target="_blank"><%= url.longUrl %></a>
-            <p><%= url.viewHistory.length %></p>
+          >
+          <!-- original url -->
+          <a href="<%= url.longUrl %>" target="_blank"><%= url.longUrl %></a>
+         <!-- view history  -->
+          <p><%= url.viewHistory.length %></p>
         </li>
-        <% }) %>
+        <% }) %> 
       </ul>
       <% } %>
     </div>

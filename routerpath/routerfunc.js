@@ -5,6 +5,8 @@ const shortid = require("shortid");
 async function handleCreateshortUrl(req, res) {
   const shortId = shortid();
   const everyExistingUrl = await urlModel.find({});
+  const shortUrl = req.params.shortUrl;
+  const entry = await urlModel.findOne({ shortUrl });
   if (!req.body || !req.body.url)
     return res.status(400).json({ msg: "bad request" });
   const createdid = await urlModel.create({
@@ -14,12 +16,9 @@ async function handleCreateshortUrl(req, res) {
   });
   return res.render(
     "home",
-    // {
-    //   url: createdid.shortUrl,
-    //   redirectpage: createdid.longUrl,
-    // },
     {
       allurls: everyExistingUrl,
+      entry: entry,
     }
   );
 }
